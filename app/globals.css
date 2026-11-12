@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html,
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #0a0a0a;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+/* Hero / table numerals: serif, tabular. */
+.num {
+  font-family: var(--font-serif), Georgia, serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+button,
+a,
+input,
+[role='button'] {
+  min-height: 44px;
+}
+button.bare,
+.bare {
+  min-height: 0;
+}
+
+*:focus {
+  outline: none;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 1px solid #0a0a0a;
+  outline-offset: 2px;
+}
+svg,
+svg * {
+  outline: none !important;
+}
+input,
+textarea,
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+
+.app-frame {
+  min-height: 100dvh;
+}
+.app-root {
+  background: #ffffff;
+  height: 100dvh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Desktop browser: show the app as a phone-width column on a paper-grey desk. */
+@media (min-width: 521px) and (display-mode: browser) {
+  body {
+    background: #efefed;
+  }
+  .app-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .app-root {
+    width: 400px;
+    height: 820px;
+    max-height: 96dvh;
+    border: 1px solid #0a0a0a;
+  }
+}
+
+.scroll-hide {
+  scrollbar-width: none;
+}
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes drop-in {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.anim-slide-up {
+  animation: slide-up 0.22s ease-out;
+}
+.anim-drop-in {
+  animation: drop-in 0.22s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
